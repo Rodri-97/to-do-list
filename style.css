@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(0, 0, 80);
+    text-align: center;
+    color: white;
+    font-family: Courier;
+}
+
+#projects-list, #projects-expanded {
+    width: 50%;
+}
+
+#projects-list {
+    float: left;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    border: 3px solid white;
+}
+
+ul li {
+    background-color: red;
+    color: white;
+    width: 50%;
+    display: inline-block;
+    padding: 10px;
+}
+
+#projects-expanded {
+    float: right;
+}
+
+#new-project-btn {
+    color: green;
+    background-color: orange;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 25px;
+    font-family: Courier;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#new-project-btn:hover {
+    color: orange;
+    background-color: green;
+    font-size: 30px;
+}

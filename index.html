@@ -2,9 +2,24 @@
 <html>
 <head>
     <title>To-Do-List</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-    <div id="content"></div>
+    <div id="main">
+
+        <div id="projects-list">
+            <ul>
+                <li>Default Project</li>
+            </ul>
+            <button type="button" id="new-project-btn">New Project</button>
+        </div>
+
+        <div id="projects-expanded">
+            <div id="default-project">
+                <h1>Default Project</h1>
+            </div>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
