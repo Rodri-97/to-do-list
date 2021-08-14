@@ -1,0 +1,1 @@
+My aim with this project is to get some more practice on object-oriented programming and webpack by building a to-do-list, as per the Odin Project's specifications: https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list
