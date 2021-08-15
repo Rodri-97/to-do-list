@@ -1,0 +1,1 @@
+(()=>{"use strict";(()=>{const t=document.getElementById("add-todo-btn"),e=document.getElementById("add-todo-form");t.addEventListener("click",(function(){e.style.display="block"}))})(),(()=>{const t=document.getElementById("add-todo-form");document.getElementById("form-submit").addEventListener("click",(function(){t.style.display="none"}))})()})();

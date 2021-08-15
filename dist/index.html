@@ -9,7 +9,7 @@
 
         <div id="projects-list">
             <ul>
-                <li>Default Project</li>
+                <li class="project-item">Default Project</li>
             </ul>
             <button type="button" id="new-project-btn">New Project</button>
         </div>
@@ -17,6 +17,27 @@
         <div id="projects-expanded">
             <div id="default-project">
                 <h1>Default Project</h1>
+                <h2 id="add-todo-btn">Add todo</h2>
+
+                <div id="add-todo-form">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" class="input-field"><br><br>
+
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" class="input-field"><br><br>
+
+                    <label for="due-date">Due date:</label>
+                    <input type="date" id="due-date" class="input-field"><br><br>
+
+                    <label for="priority">Priority:</label><br>
+                    <select id="priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select><br>
+
+                    <br><br><button type="button" id="form-submit">Submit</button>
+                </div>
             </div>
         </div>
     </div>

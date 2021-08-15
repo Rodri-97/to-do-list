@@ -2,48 +2,90 @@ body {
     background-color: rgb(0, 0, 80);
     text-align: center;
     color: white;
-    font-family: Courier;
+    font-family: Impact;
 }
 
 #projects-list, #projects-expanded {
-    width: 50%;
+    width: 40%;
 }
 
 #projects-list {
     float: left;
+    border-right: 4px solid white; /* to be removed */
 }
 
 ul {
     list-style-type: none;
     text-align: center;
-    border: 3px solid white;
+    padding-left: 0;
 }
 
 ul li {
-    background-color: red;
-    color: white;
-    width: 50%;
-    display: inline-block;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
     padding: 10px;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background-color: black;
+    color: white;
+    font-size: 20px;
 }
 
 #projects-expanded {
     float: right;
+    border-left: 4px solid white; /* to be removed */
+    padding: 10px;
 }
 
 #new-project-btn {
-    color: green;
-    background-color: orange;
+    background-color: black;
+    color: white;
     padding: 20px;
     border-radius: 20px;
-    font-size: 25px;
-    font-family: Courier;
+    font-size: 20px;
+    font-family: Impact;
     font-weight: bold;
     margin-top: 30px;
+    cursor: pointer;
+    border: 2px solid white;
 }
 
 #new-project-btn:hover {
-    color: orange;
+    background-color: white;
+    color: black;
+}
+
+#add-todo-btn {
     background-color: green;
-    font-size: 30px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#add-todo-btn:hover {
+    color: green;
+    background-color: white;
+}
+
+#add-todo-form {
+    display: none;
+    border: 3px solid grey;
+    background-color: rgba(120, 120, 120, 0.6);
+    padding: 10px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.input-field {
+    margin: auto;
+    display: block;
+    margin-top: 5px;
 }

@@ -1,3 +1,4 @@
-const todoFactory = (title, description, dueDate, priority, notes) => {
-    return { title, description, dueDate, priority, notes };
-};
+import { displayFormEvent, submitFormEvent } from "./dom.js";
+
+displayFormEvent();
+submitFormEvent();
