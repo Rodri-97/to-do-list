@@ -1,15 +1,22 @@
-export const displayFormEvent = () => {
-    const addTodoBtn = document.getElementById("add-todo-btn");
+export const displayForm = () => {
     const addTodoForm = document.getElementById("add-todo-form");
-    addTodoBtn.addEventListener("click", function() {
-        addTodoForm.style.display = "block";
-    });
+    addTodoForm.style.display = "block";
 }
 
-export const submitFormEvent = () => {
+export const getFormData = () => {
+    const elementsIDs = ["title", "description", "due-date", "priority"];
+
+    const userInput = [];
+
+    for (let i = 0; i < elementsIDs.length; i++) {
+        const element = document.getElementById(elementsIDs[i]).value;
+        userInput.push(element);
+    }
+
+    return userInput;
+}
+
+export const closeForm = () => {
     const addTodoForm = document.getElementById("add-todo-form");
-    const submitBtn = document.getElementById("form-submit");
-    submitBtn.addEventListener("click", function() {
-        addTodoForm.style.display = "none";
-    })
+    addTodoForm.style.display = "none";
 }
