@@ -5,7 +5,6 @@ export const displayForm = () => {
 
 export const getFormData = () => {
     const elementsIDs = ["title", "description", "due-date", "priority"];
-
     const userInput = [];
 
     for (let i = 0; i < elementsIDs.length; i++) {
