@@ -19,3 +19,13 @@ export const closeForm = () => {
     const addTodoForm = document.getElementById("add-todo-form");
     addTodoForm.style.display = "none";
 }
+
+export const displayProjects = (projects) => {
+    const projectsList = document.getElementById("projects-list");
+    for (let i = 0; i < projects.length; i++) {
+        const li = document.createElement("li");
+        li.innerHTML = projects[i].name;
+        li.className = "project-item";
+        projectsList.append(li);
+    }
+}

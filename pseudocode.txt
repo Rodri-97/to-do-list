@@ -1,8 +1,8 @@
 CREATE PROJECTS
 --> createProjects.js file
 --> projectFactory(title, todosArr)
-- create default project
-- store projects array on local storage
+--> create default project
+--> store default project and projects array on local storage
 - display projects array
 - newProject onclick create project
 - store newProject on local storage
