@@ -9,6 +9,9 @@ CREATE PROJECTS
 --> display projects with newProject
 
 CREATE TODOS
+- display default project by default
+- add to-dos to default project by default
 - createTodos.js file
 - todoFactory
-- 
+- Add Todo on click : add todo to current project
+- Display current project todos
