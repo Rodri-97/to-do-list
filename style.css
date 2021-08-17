@@ -5,22 +5,22 @@ body {
     font-family: Impact;
 }
 
-#projects-list, #projects-expanded {
+#projects-list-div, #projects-expanded {
     width: 40%;
 }
 
-#projects-list {
+#projects-list-div {
     float: left;
     border-right: 4px solid white; /* to be removed */
 }
 
-ul {
+#projects-list {
     list-style-type: none;
     text-align: center;
     padding-left: 0;
 }
 
-ul li {
+#projects-list li {
     background-color: white;
     color: black;
     border-radius: 20px;
@@ -28,7 +28,7 @@ ul li {
     cursor: pointer;
 }
 
-ul li:hover {
+#projects-list li:hover {
     background-color: black;
     color: white;
     font-size: 20px;
