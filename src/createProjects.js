@@ -6,7 +6,7 @@ const projectFactory = (name, todos) => {
 
 let projects = [];
 
-export const getProjects = () => {
+const getProjects = () => {
     projects = localStorage.getItem("projects");
     projects = JSON.parse(projects);
 
@@ -17,19 +17,39 @@ export const getProjects = () => {
     return projects;
 }
 
-export const setProjects = () => {
+const setProjects = () => {
     localStorage.setItem("projects", JSON.stringify(projects));
 }
 
-export const storeProject = (project) => {
+const storeProject = (project) => {
     getProjects();
     projects.push(project);
     setProjects();
 }
 
-export const storeNewProject = (name) => {
+const storeNewProject = (name) => {
     const newProject = projectFactory(name, []);
     storeProject(newProject);
 }
 
+const addDefaultProject = () => {
+    let projects = getProjects();
+    const anyDefault = projects.some(project => project.name === "Default Project");
+    if (!anyDefault) {
+        storeNewProject("Default Project");
+        projects = getProjects();
+    }
+};
+
+const addNewProject = () => {
+    const projectName = prompt("New project's name:");
+    let projects = getProjects();
+    const anySameProject = projects.some(project => project.name === projectName);
+    if (!anySameProject) {
+        storeNewProject(projectName);
+        projects = getProjects();
+    }
+};
+
+export { getProjects, addDefaultProject, addNewProject };
 
