@@ -22,6 +22,7 @@ export const closeForm = () => {
 
 export const displayProjects = (projects) => {
     const projectsList = document.getElementById("projects-list");
+    projectsList.innerHTML = "";
     for (let i = 0; i < projects.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = projects[i].name;

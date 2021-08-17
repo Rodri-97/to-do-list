@@ -27,10 +27,9 @@ export const storeProject = (project) => {
     setProjects();
 }
 
-export const storeDefaultProject = () => {
-    const defaultProject = projectFactory("Default Project", []);
-    storeProject(defaultProject);
+export const storeNewProject = (name) => {
+    const newProject = projectFactory(name, []);
+    storeProject(newProject);
 }
-
 
 
