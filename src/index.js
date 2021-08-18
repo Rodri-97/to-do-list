@@ -1,7 +1,6 @@
 import * as DOM from "./dom.js";
 
 let allProjects = [];
-const newProjectBtn = document.getElementById("new-project-btn");
 
 class Project {
     constructor(name) {
@@ -43,22 +42,46 @@ const addProject = (newProject) => {
     }
 };
 
+const updateProjectItemsEvents = (allProjects) => {
+    const findProject = (projectName) => {
+        getAllProjects();
+        for (let i = 0; i < allProjects.length; i++) {
+            if (allProjects[i].name === projectName) return allProjects[i];
+        }
+        return;
+    }
+
+    const projectItems = document.getElementsByClassName("project-item");
+
+    for (let i = 0; i < projectItems.length; i++) {
+        const projectItem = projectItems[i];
+        projectItem.addEventListener("click", function() {
+            const project = findProject(projectItem.textContent);
+            DOM.displayProject(project);
+        });
+    }
+};
+
 const createDefaultProject = (() => {
     const defaultProject = new Project("Default Project");
     addProject(defaultProject);
     DOM.displayProject(defaultProject);
     getAllProjects();
     DOM.displayProjectsList(allProjects);
+    updateProjectItemsEvents(allProjects);
 })();
 
-const createNewProject = () => {
-    const projectName = prompt("New Project's name:");
-    const newProject = new Project(projectName);
-    addProject(newProject);
-    getAllProjects();
-    DOM.displayProjectsList(allProjects);
-};
-
-newProjectBtn.addEventListener("click", createNewProject);
+const newProjectEvent = (() => {
+    const newProjectBtn = document.getElementById("new-project-btn");
+    const createNewProject = () => {
+        const projectName = prompt("New Project's name:");
+        const newProject = new Project(projectName);
+        addProject(newProject);
+        getAllProjects();
+        DOM.displayProjectsList(allProjects);
+        updateProjectItemsEvents(allProjects);
+    };
+    newProjectBtn.addEventListener("click", createNewProject);
+})();
 
 console.log(allProjects);

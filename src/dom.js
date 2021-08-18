@@ -14,6 +14,7 @@ export const displayProjectsList = (allProjects) => {
         const li = document.createElement("li");
         li.textContent = project.name;
         li.className = "project-item";
+        li.id = project.name;
         projectsList.append(li);
     }
 }
