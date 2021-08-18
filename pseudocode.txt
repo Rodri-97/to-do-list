@@ -1,17 +1,3 @@
-CREATE PROJECTS
---> createProjects.js file
---> projectFactory(title, todosArr)
---> create default project
---> store default project and projects array on local storage
---> display projects array
---> newProject onclick create project
---> store newProject on local storage
---> display projects with newProject
-
-CREATE TODOS
-- display default project by default
-- add to-dos to default project by default
-- createTodos.js file
-- todoFactory
-- Add Todo on click : add todo to current project
-- Display current project todos
+- create and display default project
+- add new project button click : prompt user to enter new project name
+- store new project in allProjects array
