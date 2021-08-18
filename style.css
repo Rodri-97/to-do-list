@@ -10,13 +10,14 @@ body {
     font-family: Impact;
 }
 
-#projects-list-div, #projects-expanded {
+/*#projects-list-div, #projects-expanded {
     width: 40%;
-}
+}*/
 
 #projects-list-div {
     float: left;
     border-right: 4px solid white; /* to be removed */
+    width: 20%;
 }
 
 #projects-list {
@@ -39,10 +40,11 @@ body {
     font-size: 20px;
 }
 
-#projects-expanded {
+#project-expanded {
     float: right;
     border-left: 4px solid white; /* to be removed */
     padding: 10px;
+    width: 70%;
 }
 
 #new-project-btn {
