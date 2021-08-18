@@ -1,5 +1,7 @@
 import * as DOM from "./dom.js";
 
+// CSS/Style: Generate random color for each project + Redify selected item
+
 let allProjects = [];
 
 class Project {
