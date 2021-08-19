@@ -85,11 +85,14 @@ const newProjectEvent = (() => {
     const newProjectBtn = document.getElementById("new-project-btn");
     newProjectBtn.addEventListener("click", function() {
         const projectName = prompt("New Project's name:");
-        const newProject = new Project(projectName);
-        addProject(newProject);
-        getAllProjects();
-        DOM.displayProjectsList(allProjects);
-        updateProjectItemsEvents(allProjects);
+
+        const createNewProject = (() => {
+            const newProject = new Project(projectName);
+            addProject(newProject);
+            getAllProjects();
+            DOM.displayProjectsList(allProjects);
+            updateProjectItemsEvents(allProjects);
+        })();
     });
 })();
 
@@ -109,6 +112,8 @@ const submitEvent = (() => {
         const currentProject = findProject(currentProjectName);
         currentProject.tasks.push(newTask);
         setAllProjects();
+        DOM.closeForm();
+        DOM.displayProject(currentProject);
     });
 })();
 

@@ -55,3 +55,8 @@ export const getFormData = () => {
     const priority = document.getElementById("priority").value;
     return [title, description, due, priority];
 };
+
+export const closeForm = () => {
+    const addTaskForm = document.getElementById("add-task-form");
+    addTaskForm.style.display = "none";
+}
