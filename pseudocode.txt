@@ -3,5 +3,5 @@
 --> store new project in allProjects array
 --> allow user to toggle between projects
 
-- allow user to add tasks to projects
+--> allow user to add tasks to projects
 - display tasks of selected project on right side

@@ -3,7 +3,7 @@ export const displayProject = (project) => {
     const projectTasks = document.getElementById("project-tasks");
     projectName.textContent = project.name;
     projectTasks.textContent = project.tasks[0];
-}
+};
 
 export const displayProjectsList = (allProjects) => {
     const projectsList = document.getElementById("projects-list");
@@ -16,5 +16,18 @@ export const displayProjectsList = (allProjects) => {
         li.className = "project-item";
         li.id = project.name;
         projectsList.append(li);
-    }
-}
+    };
+};
+
+export const displayForm = () => {
+    const addTaskForm = document.getElementById("add-task-form");
+    addTaskForm.style.display = "block";
+};
+
+export const getFormData = () => {
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const dueDate = document.getElementById("due-date").value;
+    const priority = document.getElementById("priority").value;
+    return [title, description, dueDate, priority];
+};

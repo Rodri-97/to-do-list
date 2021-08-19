@@ -8,7 +8,7 @@ class Project {
     constructor(name) {
         this.name = name;
         this.tasks = [];
-    }
+    };
 };
 
 class Task {
@@ -17,7 +17,7 @@ class Task {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-    }
+    };
 };
 
 const setAllProjects = () => {
@@ -41,17 +41,18 @@ const addProject = (newProject) => {
     if (!anySameProject) {
         allProjects.push(newProject);
         setAllProjects();
-    }
+    };
+};
+
+const findProject = (projectName) => {
+    getAllProjects();
+    for (let i = 0; i < allProjects.length; i++) {
+        if (allProjects[i].name === projectName) return allProjects[i];
+    };
+    return;
 };
 
 const updateProjectItemsEvents = (allProjects) => {
-    const findProject = (projectName) => {
-        getAllProjects();
-        for (let i = 0; i < allProjects.length; i++) {
-            if (allProjects[i].name === projectName) return allProjects[i];
-        }
-        return;
-    }
 
     const projectItems = document.getElementsByClassName("project-item");
 
@@ -61,7 +62,7 @@ const updateProjectItemsEvents = (allProjects) => {
             const project = findProject(projectItem.textContent);
             DOM.displayProject(project);
         });
-    }
+    };
 };
 
 const createDefaultProject = (() => {
@@ -75,15 +76,36 @@ const createDefaultProject = (() => {
 
 const newProjectEvent = (() => {
     const newProjectBtn = document.getElementById("new-project-btn");
-    const createNewProject = () => {
+    newProjectBtn.addEventListener("click", function() {
         const projectName = prompt("New Project's name:");
         const newProject = new Project(projectName);
         addProject(newProject);
         getAllProjects();
         DOM.displayProjectsList(allProjects);
         updateProjectItemsEvents(allProjects);
-    };
-    newProjectBtn.addEventListener("click", createNewProject);
+    });
 })();
 
-console.log(allProjects);
+const addTaskEvent = (() => {
+    const addTaskBtn = document.getElementById("add-task-btn");
+    addTaskBtn.addEventListener("click", function() {
+        DOM.displayForm();
+    });
+})();
+
+const submitEvent = (() => {
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.addEventListener("click", function() {
+        const formData = DOM.getFormData();
+        const newTask = new Task(formData[0], formData[1], formData[2], formData[3]);
+        getAllProjects();
+        const currentProjectName = document.getElementById("project-name").textContent;
+        const currentProject = findProject(currentProjectName);
+        currentProject.tasks.push(newTask);
+        setAllProjects();
+    });
+})();
+
+for (let i = 0; i < allProjects.length; i++) {
+    console.log(allProjects[i].tasks);
+}
