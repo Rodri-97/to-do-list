@@ -66,7 +66,7 @@ const updateProjectItemsEvents = (allProjects) => {
 };
 
 const renderDefaultProject = (() => {
-    let defaultProject = "";
+    let defaultProject = {};
 
     if (findProject("Default Project") === false) {
         defaultProject = new Project("Default Project");
