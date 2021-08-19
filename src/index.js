@@ -49,7 +49,7 @@ const findProject = (projectName) => {
     for (let i = 0; i < allProjects.length; i++) {
         if (allProjects[i].name === projectName) return allProjects[i];
     };
-    return;
+    return false;
 };
 
 const updateProjectItemsEvents = (allProjects) => {
@@ -65,13 +65,29 @@ const updateProjectItemsEvents = (allProjects) => {
     };
 };
 
-const createDefaultProject = (() => {
-    const defaultProject = new Project("Default Project");
-    addProject(defaultProject);
+const renderDefaultProject = (() => {
+    let defaultProject = "";
+
+    if (findProject("Default Project") === false) {
+        defaultProject = new Project("Default Project");
+        addProject(defaultProject);
+    }
+
+    else {
+        defaultProject = findProject("Default Project");
+    }
+
     DOM.displayProject(defaultProject);
     getAllProjects();
     DOM.displayProjectsList(allProjects);
     updateProjectItemsEvents(allProjects);
+
+    /*const defaultProject = new Project("Default Project");
+    addProject(defaultProject);
+    DOM.displayProject(defaultProject);
+    getAllProjects();
+    DOM.displayProjectsList(allProjects);
+    updateProjectItemsEvents(allProjects);*/
 })();
 
 const newProjectEvent = (() => {
@@ -98,7 +114,6 @@ const submitEvent = (() => {
     submitBtn.addEventListener("click", function() {
         const formData = DOM.getFormData();
         const newTask = new Task(formData[0], formData[1], formData[2], formData[3]);
-        getAllProjects();
         const currentProjectName = document.getElementById("project-name").textContent;
         const currentProject = findProject(currentProjectName);
         currentProject.tasks.push(newTask);
@@ -107,5 +122,6 @@ const submitEvent = (() => {
 })();
 
 for (let i = 0; i < allProjects.length; i++) {
-    console.log(allProjects[i].tasks);
+    const project = allProjects[i];
+    if (project.tasks.length !== 0) console.log(project.tasks[0].title);
 }

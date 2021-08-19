@@ -1,8 +1,17 @@
 export const displayProject = (project) => {
     const projectName = document.getElementById("project-name");
-    const projectTasks = document.getElementById("project-tasks");
+    const projectTasksDiv = document.getElementById("project-tasks");
+    projectTasksDiv.innerHTML = "";
     projectName.textContent = project.name;
-    projectTasks.textContent = project.tasks[0];
+
+    for (let i = 0; i < project.tasks.length; i++) {
+            const currentTask = project.tasks[i];
+            const taskDiv = document.createElement("div");
+            const title = document.createElement("h2");
+            title.textContent = currentTask.title;
+            taskDiv.append(title);
+            projectTasksDiv.append(taskDiv);
+    };
 };
 
 export const displayProjectsList = (allProjects) => {
