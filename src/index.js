@@ -1,7 +1,5 @@
 import * as DOM from "./dom.js";
 
-// CSS/Style: Generate random color for each project + Redify selected item
-
 let allProjects = [];
 
 class Project {
@@ -12,10 +10,10 @@ class Project {
 };
 
 class Task {
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, due, priority) {
         this.title = title;
         this.description = description;
-        this.dueDate = dueDate;
+        this.due = due;
         this.priority = priority;
     };
 };
@@ -81,13 +79,6 @@ const renderDefaultProject = (() => {
     getAllProjects();
     DOM.displayProjectsList(allProjects);
     updateProjectItemsEvents(allProjects);
-
-    /*const defaultProject = new Project("Default Project");
-    addProject(defaultProject);
-    DOM.displayProject(defaultProject);
-    getAllProjects();
-    DOM.displayProjectsList(allProjects);
-    updateProjectItemsEvents(allProjects);*/
 })();
 
 const newProjectEvent = (() => {

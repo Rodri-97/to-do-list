@@ -4,26 +4,25 @@
 }
 
 body {
-    background-color: var(--dark-blue);
     text-align: center;
     color: white;
     font-family: Impact;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-blue);
 }
-
-/*#projects-list-div, #projects-expanded {
-    width: 40%;
-}*/
 
 #projects-list-div {
     float: left;
-    border-right: 4px solid white; /* to be removed */
-    width: 20%;
+    width: 25%;
+    background-color: var(--dark-blue);
 }
 
 #projects-list {
     list-style-type: none;
     text-align: center;
-    padding-left: 0;
+    padding: 0;
 }
 
 #projects-list li {
@@ -32,6 +31,7 @@ body {
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
+    margin: 10px;
 }
 
 #projects-list li:hover {
@@ -42,9 +42,9 @@ body {
 
 #project-expanded {
     float: right;
-    border-left: 4px solid white; /* to be removed */
-    padding: 10px;
-    width: 70%;
+    padding: 0;
+    width: 75%;
+    background-color: gray;
 }
 
 #new-project-btn {
@@ -97,6 +97,16 @@ body {
     margin-top: 5px;
 }
 
-.task {
+.task-div {
     border: 3px solid white;
+    background-color: black;
+    font-size: 20px;
+    width: 600px;
+    margin: 0 auto 20px auto;
 }
+
+@media (max-width: 900px) {
+    .task-div {
+        width: 300px;
+    }
+ }

@@ -1,17 +1,32 @@
 export const displayProject = (project) => {
     const projectName = document.getElementById("project-name");
     const projectTasksDiv = document.getElementById("project-tasks");
-    projectTasksDiv.innerHTML = "";
     projectName.textContent = project.name;
+    projectTasksDiv.innerHTML = "";
 
-    for (let i = 0; i < project.tasks.length; i++) {
-            const currentTask = project.tasks[i];
-            const taskDiv = document.createElement("div");
-            const title = document.createElement("h2");
-            title.textContent = currentTask.title;
-            taskDiv.append(title);
-            projectTasksDiv.append(taskDiv);
+    const displayTask = (task) => {
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "task-div";
+
+        const displayTaskProperty = (property, key) => {
+            const propertyParagraph = document.createElement("p");
+            propertyParagraph.innerHTML = `${key}: ${property}`;
+            taskDiv.append(propertyParagraph);
+        };
+        
+        const taskProperties = [task.title, task.description, task.due, task.priority];
+        const taskKeys = Object.keys(task);
+
+        for (let i = 0; i < taskProperties.length; i++) {
+            const property = taskProperties[i];
+            const key = taskKeys[i].toUpperCase();
+            displayTaskProperty(property, key);
+        };
+        
+        projectTasksDiv.append(taskDiv);
     };
+
+    project.tasks.forEach(displayTask);
 };
 
 export const displayProjectsList = (allProjects) => {
@@ -36,7 +51,7 @@ export const displayForm = () => {
 export const getFormData = () => {
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
-    const dueDate = document.getElementById("due-date").value;
+    const due = document.getElementById("due").value;
     const priority = document.getElementById("priority").value;
-    return [title, description, dueDate, priority];
+    return [title, description, due, priority];
 };
