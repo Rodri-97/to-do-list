@@ -86,13 +86,15 @@ const newProjectEvent = (() => {
     newProjectBtn.addEventListener("click", function() {
         const projectName = prompt("New Project's name:");
 
-        const createNewProject = (() => {
+        const createNewProject = () => {
             const newProject = new Project(projectName);
             addProject(newProject);
             getAllProjects();
             DOM.displayProjectsList(allProjects);
             updateProjectItemsEvents(allProjects);
-        })();
+        };
+
+        if (projectName.trim() !== "") createNewProject();
     });
 })();
 
