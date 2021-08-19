@@ -51,16 +51,20 @@ const findProject = (projectName) => {
 };
 
 const updateProjectItemsEvents = (allProjects) => {
-
     const projectItems = document.getElementsByClassName("project-item");
+    const defaultProjectItem = projectItems[0];
+    DOM.redifySelectedItem(defaultProjectItem, projectItems);
 
-    for (let i = 0; i < projectItems.length; i++) {
-        const projectItem = projectItems[i];
-        projectItem.addEventListener("click", function() {
-            const project = findProject(projectItem.textContent);
-            DOM.displayProject(project);
-        });
-    };
+    const addDisplayItemsEvents = (() => {
+        for (let i = 0; i < projectItems.length; i++) {
+            const item = projectItems[i];
+            item.addEventListener("click", function() {
+                DOM.redifySelectedItem(item, projectItems);
+                const project = findProject(item.textContent);
+                DOM.displayProject(project);
+            });
+        };
+    })();
 };
 
 const renderDefaultProject = (() => {

@@ -59,4 +59,16 @@ export const getFormData = () => {
 export const closeForm = () => {
     const addTaskForm = document.getElementById("add-task-form");
     addTaskForm.style.display = "none";
-}
+};
+
+export const redifySelectedItem = (selectedItem, allItems) => {
+    for (let i = 0; i < allItems.length; i++) {
+        const currentItem = allItems[i];
+        if (currentItem === selectedItem) {
+            currentItem.style.backgroundColor = "red";
+        }
+        else {
+            currentItem.style.backgroundColor = "white";
+        }
+    }
+};
