@@ -22,6 +22,18 @@ export const displayProject = (project) => {
             const key = taskKeys[i].toUpperCase();
             displayTaskProperty(property, key);
         };
+
+        const addEditButton = (() => {
+            const editBtn = document.createElement("button");
+            editBtn.type = "button";
+            editBtn.className = "edit-btn";
+            editBtn.textContent = "Edit";
+            taskDiv.append(editBtn);
+        })();
+
+        //const addDeleteButton = () => {
+
+        //};
         
         projectTasksDiv.append(taskDiv);
     };
