@@ -103,15 +103,19 @@ export const displayEditForm = (task) => {
     const changeParagraphIntoInput = (propertyName) => {
         const input = document.createElement("input");
         input.type = "text";
-        input.placeholder = propertyName;
-        input.className = "input-field";
+        input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
+
+        if (propertyName === "DUE") {
+            input.placeholder = "DUE (MM/DD/YYYY)";
+        }
+        else {
+            input.placeholder = propertyName;
+        };
+
         task.append(input);
     };
 
-    for (let i = 0; i < propertiesNames.length; i++) {
-        const propertyName = propertiesNames[i];
-        changeParagraphIntoInput(propertyName);
-    };
+    propertiesNames.forEach(changeParagraphIntoInput);
 
     const createDoneButton = (() => {
         const doneButton = document.createElement("button");

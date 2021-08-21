@@ -126,11 +126,22 @@ const submitEvent = (() => {
 const editEvent = (() => {
     const tasks = document.getElementsByClassName("task-div");
 
+    const editDateEvent = () => {
+        const editDates = document.getElementsByClassName("edit-due");
+    
+        for (let i = 0; i < editDates.length; i++) {
+            editDates[i].addEventListener("focus", function() {
+                console.log("Someting, anything really");
+            });
+        };
+    };
+
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         const editButton = task.getElementsByClassName("edit-btn")[0];
         editButton.addEventListener("click", function () {
             DOM.displayEditForm(task);
+            editDateEvent();
         });
     };
 })();
