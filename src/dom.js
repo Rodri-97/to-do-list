@@ -93,29 +93,53 @@ const getPropertiesNames = (taskProperties) => {
         newArr.push(propertyName);
     }
     return newArr;
-}
+};
+
+const createSelectOptions = () => {
+    const options = ["High", "Medium", "Low"];
+    const optionsReturned = [];
+
+    for (let i = 0; i < options.length; i++) {
+        const option = document.createElement("option");
+        option.innerHTML = options[i];
+        optionsReturned.push(option);
+    };
+
+    return optionsReturned;
+};
 
 export const displayEditForm = (task) => {
     const taskProperties = task.getElementsByClassName("task-property");
     const propertiesNames = getPropertiesNames(taskProperties);
     task.innerHTML = "";
 
-    const changeParagraphIntoInput = (propertyName) => {
-        const input = document.createElement("input");
+    const displayInputField = (propertyName) => {
+        const propertyText = document.createElement("h2");
+        propertyText.textContent = propertyName;
+        propertyText.className = "edit-property-text";
+        task.append(propertyText);
+
+        let input = document.createElement("input");
         input.type = "text";
         input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
 
         if (propertyName === "DUE") {
-            input.placeholder = "DUE (MM/DD/YYYY)";
+            input.placeholder = "MM/DD/YYYY";
         }
         else {
-            input.placeholder = propertyName;
+            input.placeholder = `New ${propertyName.toLowerCase()}`;
+        };
+
+        if (propertyName === "PRIORITY") {
+            input = document.createElement("select");
+            const options = createSelectOptions();
+            for (let i = 0; i < options.length; i++) input.append(options[i]);
         };
 
         task.append(input);
     };
 
-    propertiesNames.forEach(changeParagraphIntoInput);
+    propertiesNames.forEach(displayInputField);
 
     const createDoneButton = (() => {
         const doneButton = document.createElement("button");

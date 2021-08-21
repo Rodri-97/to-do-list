@@ -50,6 +50,29 @@ const findProject = (projectName) => {
     return false;
 };
 
+const editEvent = () => {
+    const tasks = document.getElementsByClassName("task-div");
+
+    const editDateEvent = () => {
+        const editDates = document.getElementsByClassName("edit-due");
+    
+        for (let i = 0; i < editDates.length; i++) {
+            editDates[i].addEventListener("focus", function() {
+                this.type = "date";
+            });
+        };
+    };
+
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        const editButton = task.getElementsByClassName("edit-btn")[0];
+        editButton.addEventListener("click", function () {
+            DOM.displayEditForm(task);
+            editDateEvent();
+        });
+    };
+};
+
 const updateProjectItemsEvents = (allProjects) => {
     const projectItems = document.getElementsByClassName("project-item");
     const defaultProjectItem = projectItems[0];
@@ -62,6 +85,7 @@ const updateProjectItemsEvents = (allProjects) => {
                 DOM.redifySelectedItem(item, projectItems);
                 const project = findProject(item.textContent);
                 DOM.displayProject(project);
+                editEvent();
             });
         };
     })();
@@ -83,6 +107,7 @@ const renderDefaultProject = (() => {
     getAllProjects();
     DOM.displayProjectsList(allProjects);
     updateProjectItemsEvents(allProjects);
+    editEvent();
 })();
 
 const newProjectEvent = (() => {
@@ -121,29 +146,6 @@ const submitEvent = (() => {
         DOM.closeForm();
         DOM.displayProject(currentProject);
     });
-})();
-
-const editEvent = (() => {
-    const tasks = document.getElementsByClassName("task-div");
-
-    const editDateEvent = () => {
-        const editDates = document.getElementsByClassName("edit-due");
-    
-        for (let i = 0; i < editDates.length; i++) {
-            editDates[i].addEventListener("focus", function() {
-                console.log("Someting, anything really");
-            });
-        };
-    };
-
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        const editButton = task.getElementsByClassName("edit-btn")[0];
-        editButton.addEventListener("click", function () {
-            DOM.displayEditForm(task);
-            editDateEvent();
-        });
-    };
 })();
 
 // To be removed
