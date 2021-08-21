@@ -112,11 +112,20 @@ body {
     margin: 10px;
 }
 
+.done-btn {
+    margin-top: 30px;
+}
+
 .edit-input-field {
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.edit-property-text {
+    font-size: 15px;
+    margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
