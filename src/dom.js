@@ -10,6 +10,7 @@ export const displayProject = (project) => {
 
         const displayTaskProperty = (property, key) => {
             const propertyParagraph = document.createElement("p");
+            propertyParagraph.className = "task-property";
             propertyParagraph.innerHTML = `${key}: ${property}`;
             taskDiv.append(propertyParagraph);
         };
@@ -84,3 +85,40 @@ export const redifySelectedItem = (selectedItem, allItems) => {
         }
     }
 };
+
+const getPropertiesNames = (taskProperties) => {
+    const newArr = [];
+    for (let i = 0; i < taskProperties.length; i++) {
+        const propertyName = taskProperties[i].textContent.split(":")[0];
+        newArr.push(propertyName);
+    }
+    return newArr;
+}
+
+export const displayEditForm = (task) => {
+    const taskProperties = task.getElementsByClassName("task-property");
+    const propertiesNames = getPropertiesNames(taskProperties);
+    task.innerHTML = "";
+
+    const changeParagraphIntoInput = (propertyName) => {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = propertyName;
+        input.className = "input-field";
+        task.append(input);
+    };
+
+    for (let i = 0; i < propertiesNames.length; i++) {
+        const propertyName = propertiesNames[i];
+        changeParagraphIntoInput(propertyName);
+    };
+
+    const createDoneButton = (() => {
+        const doneButton = document.createElement("button");
+        doneButton.type = "button";
+        doneButton.className = "done-btn";
+        doneButton.textContent = "Done!";
+        task.innerHTML += "<br>";
+        task.append(doneButton);
+    })();
+}

@@ -123,6 +123,18 @@ const submitEvent = (() => {
     });
 })();
 
+const editEvent = (() => {
+    const tasks = document.getElementsByClassName("task-div");
+
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        const editButton = task.getElementsByClassName("edit-btn")[0];
+        editButton.addEventListener("click", function () {
+            DOM.displayEditForm(task);
+        });
+    };
+})();
+
 // To be removed
 for (let i = 0; i < allProjects.length; i++) {
     const project = allProjects[i];

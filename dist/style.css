@@ -105,11 +105,18 @@ body {
     margin: 0 auto 20px auto;
 }
 
-.edit-btn {
+.edit-btn, .done-btn {
     color: white;
     background: orange;
     font-size: 20px;
     margin: 10px;
+}
+
+.input-field {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 900px) {
