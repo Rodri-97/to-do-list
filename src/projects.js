@@ -5,7 +5,12 @@ class Project {
     };
 };
 
-export let allProjects = [];
+export const createProject = (name, tasks) => {
+    const newProject = new Project(name, tasks);
+    return newProject;
+}
+
+let allProjects = [];
 
 export const setAllProjects = () => {
     localStorage.setItem("allProjects", JSON.stringify(allProjects));
@@ -24,7 +29,7 @@ export const getAllProjects = () => {
 
 export const addProject = (newProject) => {
     getAllProjects();
-    const anySameProject = allProjects.some(project => project.name === newProject.name);
+    const anySameProject = allProjects.some(project => project.name.toLowerCase() === newProject.name.toLowerCase());
     if (!anySameProject) {
         allProjects.push(newProject);
         setAllProjects();

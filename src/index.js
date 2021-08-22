@@ -1,6 +1,6 @@
 import * as DOM from "./dom.js";
-import { allProjects, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
-import { createTask } from "./tasks.js";
+import { createProject, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
+import { createTask, getAllTasks, taskAlreadyExists } from "./tasks.js";
 
 const editEvent = () => {
     const tasks = document.getElementsByClassName("task-div");
@@ -47,7 +47,7 @@ const renderDefaultProject = (() => {
     let defaultProject = {};
 
     if (findProject("Default Project") === false) {
-        defaultProject = new Project("Default Project");
+        defaultProject = createProject("Default Project");
         addProject(defaultProject);
     }
 
@@ -56,7 +56,7 @@ const renderDefaultProject = (() => {
     }
 
     DOM.displayProject(defaultProject);
-    getAllProjects();
+    const allProjects = getAllProjects();
     DOM.displayProjectsList(allProjects);
     updateProjectItemsEvents(allProjects);
     editEvent();
@@ -68,14 +68,19 @@ const newProjectEvent = (() => {
         const projectName = prompt("New Project's name:");
 
         const createNewProject = () => {
-            const newProject = new Project(projectName);
+            const newProject = createProject(projectName);
             addProject(newProject);
-            getAllProjects();
+            const allProjects = getAllProjects();
             DOM.displayProjectsList(allProjects);
             updateProjectItemsEvents(allProjects);
         };
 
-        if (projectName.trim() !== "") createNewProject();
+        if (projectName.trim() !== "" ) {
+            createNewProject();
+        }
+        else {
+            alert("That project name is either empty or already exists!");
+        }
     });
 })();
 
@@ -86,17 +91,39 @@ const addTaskEvent = (() => {
     });
 })();
 
+const isNotEmpty = (taskInput) => {
+    if (taskInput === "") return false;
+    return true;
+};
+
 const submitEvent = (() => {
     const submitBtn = document.getElementById("submit-btn");
     submitBtn.addEventListener("click", function() {
         const formData = DOM.getFormData();
-        const newTask = createTask(formData[0], formData[1], formData[2], formData[3]);
-        const currentProjectName = document.getElementById("project-name").textContent;
-        const currentProject = findProject(currentProjectName);
-        currentProject.tasks.push(newTask);
-        setAllProjects();
-        DOM.closeForm();
-        DOM.displayProject(currentProject);
-        editEvent();
+        const taskTitle = formData[0];
+        const taskDescription = formData[1];
+        const taskDue = formData[2];
+        const taskPriority = formData[3];
+        const userInput = [taskTitle, taskDescription, taskDue, taskPriority];
+
+        if (!taskAlreadyExists(taskTitle) && userInput.every(isNotEmpty)) {
+            const newTask = createTask(taskTitle, taskDescription, taskDue, taskPriority);
+            const currentProjectName = document.getElementById("project-name").textContent;
+            const currentProject = findProject(currentProjectName);
+            currentProject.tasks.push(newTask);
+            setAllProjects();
+            DOM.closeForm();
+            DOM.displayProject(currentProject);
+            editEvent();
+        }
+        else {
+            alert("That task is either empty or already exists!");
+        };
     });
 })();
+
+//const projectName = document.getElementById("project-name").textContent;
+//getAllTasks(projectName);
+//getAllTasks("Second One");
+//console.log(taskAlreadyExists("f RK"));
+//taskAlreadyExists("bob marley");
