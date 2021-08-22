@@ -1,14 +1,6 @@
 import * as DOM from "./dom.js";
 import { allProjects, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
-
-class Task {
-    constructor(title, description, due, priority) {
-        this.title = title;
-        this.description = description;
-        this.due = due;
-        this.priority = priority;
-    };
-};
+import { createTask } from "./tasks.js";
 
 const editEvent = () => {
     const tasks = document.getElementsByClassName("task-div");
@@ -98,7 +90,7 @@ const submitEvent = (() => {
     const submitBtn = document.getElementById("submit-btn");
     submitBtn.addEventListener("click", function() {
         const formData = DOM.getFormData();
-        const newTask = new Task(formData[0], formData[1], formData[2], formData[3]);
+        const newTask = createTask(formData[0], formData[1], formData[2], formData[3]);
         const currentProjectName = document.getElementById("project-name").textContent;
         const currentProject = findProject(currentProjectName);
         currentProject.tasks.push(newTask);
