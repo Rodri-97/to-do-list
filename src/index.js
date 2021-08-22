@@ -1,13 +1,5 @@
 import * as DOM from "./dom.js";
-
-let allProjects = [];
-
-class Project {
-    constructor(name) {
-        this.name = name;
-        this.tasks = [];
-    };
-};
+import { allProjects, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
 
 class Task {
     constructor(title, description, due, priority) {
@@ -16,38 +8,6 @@ class Task {
         this.due = due;
         this.priority = priority;
     };
-};
-
-const setAllProjects = () => {
-    localStorage.setItem("allProjects", JSON.stringify(allProjects));
-};
-
-const getAllProjects = () => {
-    allProjects = localStorage.getItem("allProjects");
-    allProjects = JSON.parse(allProjects);
-
-    if (allProjects === null) {
-        allProjects = [];
-    };
-
-    return allProjects;
-};
-
-const addProject = (newProject) => {
-    getAllProjects();
-    const anySameProject = allProjects.some(project => project.name === newProject.name);
-    if (!anySameProject) {
-        allProjects.push(newProject);
-        setAllProjects();
-    };
-};
-
-const findProject = (projectName) => {
-    getAllProjects();
-    for (let i = 0; i < allProjects.length; i++) {
-        if (allProjects[i].name === projectName) return allProjects[i];
-    };
-    return false;
 };
 
 const editEvent = () => {
