@@ -26,40 +26,24 @@ export const setAllTasks = () => {
     setAllProjects();
 };
 
-/*export const findTaskObject = (taskTitle) => {
-    const allProjects = getAllProjects();
-    let taskObject = {};
-    for (let i = 0; i < allProjects.length; i++) {
-        const projectName = allProjects[i].name;
-        const tasks = getAllTasks(projectName);
-
-        for (let j = 0; j < tasks.length; j++) {
-            if (tasks[j].title === taskTitle) taskObject = tasks[j];
-        }
-    }
-    return taskObject;
-};*/
-
 export const findTaskObject = (taskTitle) => {
     const allProjects = getAllProjects();
-    let taskObject = {};
     for (let i = 0; i < allProjects.length; i++) {
         const projectName = allProjects[i].name;
         const tasks = getAllTasks(projectName);
 
         for (let j = 0; j < tasks.length; j++) {
-            if (tasks[j].title === taskTitle) taskObject = tasks[j];
+            if (tasks[j].title === taskTitle) return tasks[j];
         }
     }
-    return taskObject;
+    return false;
 };
 
-//export const editTaskObject = (taskTitle, newData) => {
-export const editTaskObject = (taskTitle) => {
+export const editTaskObject = (taskTitle, newData) => {
     console.log(taskTitle);
     const taskObject = findTaskObject(taskTitle);
-    // const taskObject = findTaskObject("One task");
     console.log(taskObject);
+    console.log(newData);
     /*const newTitle = newData[0];
     const newDescription = newData[1];
     const newDue = newData[2];

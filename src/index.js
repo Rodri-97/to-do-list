@@ -18,7 +18,7 @@ const editEvent = () => {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         const editButton = task.getElementsByClassName("edit-btn")[0];
-        const taskTitle = task.getElementsByClassName("task-property")[0].textContent.split(":")[1];
+        const taskTitle = task.getElementsByClassName("task-property")[0].textContent.split(":")[1].trim();
         editButton.addEventListener("click", function () {
             DOM.displayEditForm(task);
             editDateEvent();
@@ -131,20 +131,3 @@ const doneEvent = (task, taskTitle) => {
         editTaskObject(taskTitle, newData);
     });
 };
-
-//const projectName = document.getElementById("project-name").textContent;
-//getAllTasks(projectName);
-//getAllTasks("Second One");
-//console.log(taskAlreadyExists("f RK"));
-//taskAlreadyExists("bob marley");
-
-//console.log(findTaskObject("ézefe"));
-//const allTasks = getAllTasks("Default Project");
-//console.log(allTasks[0].title);
-//console.log(findTaskObject("one task"));
-
-/*const taskTitle = "One task";
-console.log(taskTitle);
-console.log(findTaskObject(taskTitle));*/
-
-console.log(getAllTasks());
