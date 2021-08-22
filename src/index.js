@@ -145,11 +145,6 @@ const submitEvent = (() => {
         setAllProjects();
         DOM.closeForm();
         DOM.displayProject(currentProject);
+        editEvent();
     });
 })();
-
-// To be removed
-for (let i = 0; i < allProjects.length; i++) {
-    const project = allProjects[i];
-    if (project.tasks.length !== 0) console.log(project.tasks[0].title);
-}
