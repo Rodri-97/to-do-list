@@ -1,6 +1,6 @@
 import * as DOM from "./dom.js";
 import { createProject, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
-import { createTask, getAllTasks, taskAlreadyExists } from "./tasks.js";
+import { createTask, getAllTasks, findTaskObject, editTaskObject } from "./tasks.js";
 
 const editEvent = () => {
     const tasks = document.getElementsByClassName("task-div");
@@ -18,9 +18,11 @@ const editEvent = () => {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         const editButton = task.getElementsByClassName("edit-btn")[0];
+        const taskTitle = task.getElementsByClassName("task-property")[0].textContent.split(":")[1];
         editButton.addEventListener("click", function () {
             DOM.displayEditForm(task);
             editDateEvent();
+            doneEvent(task, taskTitle);
         });
     };
 };
@@ -106,7 +108,7 @@ const submitEvent = (() => {
         const taskPriority = formData[3];
         const userInput = [taskTitle, taskDescription, taskDue, taskPriority];
 
-        if (!taskAlreadyExists(taskTitle) && userInput.every(isNotEmpty)) {
+        if (!findTaskObject(taskTitle) && userInput.every(isNotEmpty)) {
             const newTask = createTask(taskTitle, taskDescription, taskDue, taskPriority);
             const currentProjectName = document.getElementById("project-name").textContent;
             const currentProject = findProject(currentProjectName);
@@ -122,8 +124,27 @@ const submitEvent = (() => {
     });
 })();
 
+const doneEvent = (task, taskTitle) => {
+    const doneButton = task.getElementsByClassName("done-btn")[0];
+    doneButton.addEventListener("click", function() {
+        const newData = DOM.getEditData(task);
+        editTaskObject(taskTitle, newData);
+    });
+};
+
 //const projectName = document.getElementById("project-name").textContent;
 //getAllTasks(projectName);
 //getAllTasks("Second One");
 //console.log(taskAlreadyExists("f RK"));
 //taskAlreadyExists("bob marley");
+
+//console.log(findTaskObject("ézefe"));
+//const allTasks = getAllTasks("Default Project");
+//console.log(allTasks[0].title);
+//console.log(findTaskObject("one task"));
+
+/*const taskTitle = "One task";
+console.log(taskTitle);
+console.log(findTaskObject(taskTitle));*/
+
+console.log(getAllTasks());

@@ -121,10 +121,9 @@ export const displayEditForm = (task) => {
 
         let input = document.createElement("input");
         input.type = "text";
-        input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
 
         if (propertyName === "DUE") {
-            input.placeholder = "MM/DD/YYYY";
+            input.placeholder = "DD/MM/YYYY";
         }
         else {
             input.placeholder = `New ${propertyName.toLowerCase()}`;
@@ -136,6 +135,7 @@ export const displayEditForm = (task) => {
             for (let i = 0; i < options.length; i++) input.append(options[i]);
         };
 
+        input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
         task.append(input);
     };
 
@@ -149,4 +149,14 @@ export const displayEditForm = (task) => {
         task.innerHTML += "<br>";
         task.append(doneButton);
     })();
-}
+};
+
+export const getEditData = (task) => {
+    const inputFields = task.getElementsByClassName("edit-input-field");
+    const editData = [];
+
+    for (let i = 0; i < inputFields.length; i++) {
+        editData.push(inputFields[i].value);
+    };
+    return editData;
+};

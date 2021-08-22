@@ -26,16 +26,47 @@ export const setAllTasks = () => {
     setAllProjects();
 };
 
-export const taskAlreadyExists = (taskTitle) => {
+/*export const findTaskObject = (taskTitle) => {
     const allProjects = getAllProjects();
-
+    let taskObject = {};
     for (let i = 0; i < allProjects.length; i++) {
         const projectName = allProjects[i].name;
         const tasks = getAllTasks(projectName);
 
         for (let j = 0; j < tasks.length; j++) {
-            if (tasks[j].title.toLowerCase() === taskTitle.toLowerCase()) return true;
-        };
-    };
-    return false;
+            if (tasks[j].title === taskTitle) taskObject = tasks[j];
+        }
+    }
+    return taskObject;
+};*/
+
+export const findTaskObject = (taskTitle) => {
+    const allProjects = getAllProjects();
+    let taskObject = {};
+    for (let i = 0; i < allProjects.length; i++) {
+        const projectName = allProjects[i].name;
+        const tasks = getAllTasks(projectName);
+
+        for (let j = 0; j < tasks.length; j++) {
+            if (tasks[j].title === taskTitle) taskObject = tasks[j];
+        }
+    }
+    return taskObject;
+};
+
+//export const editTaskObject = (taskTitle, newData) => {
+export const editTaskObject = (taskTitle) => {
+    console.log(taskTitle);
+    const taskObject = findTaskObject(taskTitle);
+    // const taskObject = findTaskObject("One task");
+    console.log(taskObject);
+    /*const newTitle = newData[0];
+    const newDescription = newData[1];
+    const newDue = newData[2];
+    const newPriority = newData[3];
+    taskObject.title = newTitle;
+    taskObject.description = newDescription;
+    taskObject.due = newDue;
+    taskObject.priority = newPriority;
+    setAllProjects();*/
 };
