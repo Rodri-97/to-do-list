@@ -95,8 +95,17 @@ const getPropertiesNames = (taskProperties) => {
     return newArr;
 };
 
+const getPropertiesValues = (taskProperties) => {
+    const newArr = [];
+    for (let i = 0; i < taskProperties.length; i++) {
+        const value = taskProperties[i].textContent.split(":")[1];
+        newArr.push(value);
+    }
+    return newArr;
+};
+
 const createSelectOptions = () => {
-    const options = ["High", "Medium", "Low"];
+    const options = ["high", "medium", "low"];
     const optionsReturned = [];
 
     for (let i = 0; i < options.length; i++) {
@@ -111,35 +120,38 @@ const createSelectOptions = () => {
 export const displayEditForm = (task) => {
     const taskProperties = task.getElementsByClassName("task-property");
     const propertiesNames = getPropertiesNames(taskProperties);
+    const propertiesValues = getPropertiesValues(taskProperties);
     task.innerHTML = "";
 
-    const displayInputField = (propertyName) => {
+    const displayInputField = (propertyName, propertyValue) => {
         const propertyText = document.createElement("h2");
         propertyText.textContent = propertyName;
         propertyText.className = "edit-property-text";
         task.append(propertyText);
 
         let input = document.createElement("input");
-        input.type = "text";
-
-        if (propertyName === "DUE") {
-            input.placeholder = "DD/MM/YYYY";
-        }
-        else {
-            input.placeholder = `New ${propertyName.toLowerCase()}`;
-        };
 
         if (propertyName === "PRIORITY") {
             input = document.createElement("select");
             const options = createSelectOptions();
-            for (let i = 0; i < options.length; i++) input.append(options[i]);
+            for (let i = 0; i < options.length; i++) {
+                input.append(options[i]);
+            }
+        }
+        else {
+            input.type = "text";
+            input.defaultValue = propertyValue.trim();
         };
 
         input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
         task.append(input);
     };
 
-    propertiesNames.forEach(displayInputField);
+    for (let i = 0; i < propertiesNames.length; i++) {
+        const propertyName = propertiesNames[i];
+        const propertyValue = propertiesValues[i];
+        displayInputField(propertyName, propertyValue);
+    };
 
     const createDoneButton = (() => {
         const doneButton = document.createElement("button");
