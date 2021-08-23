@@ -104,19 +104,6 @@ const getPropertiesValues = (taskProperties) => {
     return newArr;
 };
 
-const createSelectOptions = () => {
-    const options = ["high", "medium", "low"];
-    const optionsReturned = [];
-
-    for (let i = 0; i < options.length; i++) {
-        const option = document.createElement("option");
-        option.innerHTML = options[i];
-        optionsReturned.push(option);
-    };
-
-    return optionsReturned;
-};
-
 export const displayEditForm = (task) => {
     const taskProperties = task.getElementsByClassName("task-property");
     const propertiesNames = getPropertiesNames(taskProperties);
@@ -133,10 +120,13 @@ export const displayEditForm = (task) => {
 
         if (propertyName === "PRIORITY") {
             input = document.createElement("select");
-            const options = createSelectOptions();
+            const options = ["high", "medium", "low"];
             for (let i = 0; i < options.length; i++) {
-                input.append(options[i]);
-            }
+                const option = document.createElement("option");
+                option.innerHTML = options[i];
+                if (options[i] === propertyValue.trim()) option.selected = true;
+                input.append(option);
+            };
         }
         else {
             input.type = "text";
