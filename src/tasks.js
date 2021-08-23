@@ -40,11 +40,8 @@ export const findTaskObject = (taskTitle) => {
 };
 
 export const editTaskObject = (taskTitle, newData) => {
-    console.log(taskTitle);
     const taskObject = findTaskObject(taskTitle);
-    console.log(taskObject);
-    console.log(newData);
-    /*const newTitle = newData[0];
+    const newTitle = newData[0];
     const newDescription = newData[1];
     const newDue = newData[2];
     const newPriority = newData[3];
@@ -52,5 +49,5 @@ export const editTaskObject = (taskTitle, newData) => {
     taskObject.description = newDescription;
     taskObject.due = newDue;
     taskObject.priority = newPriority;
-    setAllProjects();*/
+    setAllProjects();
 };

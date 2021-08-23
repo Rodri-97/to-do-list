@@ -129,5 +129,8 @@ const doneEvent = (task, taskTitle) => {
     doneButton.addEventListener("click", function() {
         const newData = DOM.getEditData(task);
         editTaskObject(taskTitle, newData);
+        const currentProjectName = document.getElementById("project-name").textContent;
+        const currentProject = findProject(currentProjectName);
+        DOM.displayProject(currentProject);
     });
 };
