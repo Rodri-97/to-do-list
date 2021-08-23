@@ -116,25 +116,25 @@ export const displayEditForm = (task) => {
         propertyText.className = "edit-property-text";
         task.append(propertyText);
 
-        let input = document.createElement("input");
-
         if (propertyName === "PRIORITY") {
-            input = document.createElement("select");
+            const select = document.createElement("select");
             const options = ["high", "medium", "low"];
             for (let i = 0; i < options.length; i++) {
                 const option = document.createElement("option");
                 option.innerHTML = options[i];
                 if (options[i] === propertyValue.trim()) option.selected = true;
-                input.append(option);
+                select.append(option);
             };
+            select.className = "edit-input-field edit-priority";
+            task.append(select);
         }
         else {
+            const input = document.createElement("input");
             input.type = "text";
             input.defaultValue = propertyValue.trim();
+            input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
+            task.append(input);
         };
-
-        input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
-        task.append(input);
     };
 
     for (let i = 0; i < propertiesNames.length; i++) {
