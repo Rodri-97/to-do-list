@@ -1,11 +1,11 @@
-const createTaskProperty = (property, key) => {
+const displayTaskProperty = (property, key) => {
     const propertyParagraph = document.createElement("p");
     propertyParagraph.className = "task-property";
     propertyParagraph.innerHTML = `${key}: ${property}`;
     return propertyParagraph;
 };
 
-const createEditButton = () => {
+const displayEditButton = () => {
     const editBtn = document.createElement("button");
     editBtn.type = "button";
     editBtn.className = "edit-btn";
@@ -13,7 +13,7 @@ const createEditButton = () => {
     return editBtn;
 };
 
-const createTask = (task) => {
+const displayTask = (task) => {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task-div";
     
@@ -23,11 +23,11 @@ const createTask = (task) => {
     for (let i = 0; i < taskProperties.length; i++) {
         const property = taskProperties[i];
         const key = taskKeys[i].toUpperCase();
-        const propertyParagraph = createTaskProperty(property, key);
+        const propertyParagraph = displayTaskProperty(property, key);
         taskDiv.append(propertyParagraph);
     };
 
-    const editButton = createEditButton();
+    const editButton = displayEditButton();
     taskDiv.append(editButton);
     return taskDiv;
 };
@@ -38,7 +38,7 @@ export const displayProject = (project) => {
     projectName.textContent = project.name;
     projectTasksDiv.innerHTML = "";
     for (let i = 0; i < project.tasks.length; i++) {
-        const task = createTask(project.tasks[i]);
+        const task = displayTask(project.tasks[i]);
         projectTasksDiv.append(task);
     };
 };
@@ -140,7 +140,7 @@ const displayInputField = (task, propertyName, propertyValue) => {
     };
 };
 
-const createDoneButton = (task) => {
+const displayDoneButton = (task) => {
     const doneButton = document.createElement("button");
     doneButton.type = "button";
     doneButton.className = "done-btn";
@@ -161,7 +161,7 @@ export const displayEditForm = (task) => {
         displayInputField(task, propertyName, propertyValue);
     };
 
-    createDoneButton(task);
+    displayDoneButton(task);
 };
 
 export const getEditData = (task) => {
