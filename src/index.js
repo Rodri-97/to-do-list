@@ -50,7 +50,6 @@ const addDisplayItemsEvents = (projectItems) => {
     };
 };
 
-//const updateProjectItemsEvents = (allProjects) => {
 const updateProjectItemsEvents = () => {
     const projectItems = document.getElementsByClassName("project-item");
     const defaultProjectItem = projectItems[0];
@@ -73,7 +72,6 @@ const renderDefaultProject = (() => {
     DOM.displayProject(defaultProject);
     const allProjects = getAllProjects();
     DOM.displayProjectsList(allProjects);
-    //updateProjectItemsEvents(allProjects);
     updateProjectItemsEvents();
     editEvent();
 })();
@@ -83,7 +81,6 @@ const createNewProject = () => {
     addProject(newProject);
     const allProjects = getAllProjects();
     DOM.displayProjectsList(allProjects);
-    //updateProjectItemsEvents(allProjects);
     updateProjectItemsEvents();
 };
 
