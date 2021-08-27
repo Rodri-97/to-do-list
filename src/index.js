@@ -77,7 +77,7 @@ const renderDefaultProject = (() => {
     editEvent();
 })();
 
-const createNewProject = () => {
+const createNewProject = (projectName) => {
     const newProject = createProject(projectName);
     addProject(newProject);
     const allProjects = getAllProjects();
@@ -91,7 +91,7 @@ const newProjectEvent = (() => {
         const projectName = prompt("New Project's name:");
 
         if (projectName.trim() !== "" ) {
-            createNewProject();
+            createNewProject(projectName);
         }
         else {
             alert("That project name is either empty or already exists!");
