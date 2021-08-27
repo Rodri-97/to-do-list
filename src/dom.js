@@ -32,13 +32,33 @@ const displayTask = (task) => {
     return taskDiv;
 };
 
+const sortTasksByPriority = (tasks) => {
+    const sortedTasks = [];
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].priority === "high") sortedTasks.push(tasks[i])
+    };
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].priority === "medium") sortedTasks.push(tasks[i]);
+    };
+
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].priority === "low") sortedTasks.push(tasks[i]);
+    };
+
+    return sortedTasks;
+};
+
 export const displayProject = (project) => {
     const projectName = document.getElementById("project-name");
     const projectTasksDiv = document.getElementById("project-tasks");
     projectName.textContent = project.name;
     projectTasksDiv.innerHTML = "";
-    for (let i = 0; i < project.tasks.length; i++) {
-        const task = displayTask(project.tasks[i]);
+    const sortedTasks = sortTasksByPriority(project.tasks);
+    
+    for (let i = 0; i < sortedTasks.length; i++) {
+        const task = displayTask(sortedTasks[i]);
         projectTasksDiv.append(task);
     };
 };
