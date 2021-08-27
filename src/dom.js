@@ -1,45 +1,46 @@
+const createTaskProperty = (property, key) => {
+    const propertyParagraph = document.createElement("p");
+    propertyParagraph.className = "task-property";
+    propertyParagraph.innerHTML = `${key}: ${property}`;
+    return propertyParagraph;
+};
+
+const createEditButton = () => {
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "edit-btn";
+    editBtn.textContent = "Edit";
+    return editBtn;
+};
+
+const createTask = (task) => {
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "task-div";
+    
+    const taskProperties = [task.title, task.description, task.due, task.priority];
+    const taskKeys = Object.keys(task);
+
+    for (let i = 0; i < taskProperties.length; i++) {
+        const property = taskProperties[i];
+        const key = taskKeys[i].toUpperCase();
+        const propertyParagraph = createTaskProperty(property, key);
+        taskDiv.append(propertyParagraph);
+    };
+
+    const editButton = createEditButton();
+    taskDiv.append(editButton);
+    return taskDiv;
+};
+
 export const displayProject = (project) => {
     const projectName = document.getElementById("project-name");
     const projectTasksDiv = document.getElementById("project-tasks");
     projectName.textContent = project.name;
     projectTasksDiv.innerHTML = "";
-
-    const displayTask = (task) => {
-        const taskDiv = document.createElement("div");
-        taskDiv.className = "task-div";
-
-        const displayTaskProperty = (property, key) => {
-            const propertyParagraph = document.createElement("p");
-            propertyParagraph.className = "task-property";
-            propertyParagraph.innerHTML = `${key}: ${property}`;
-            taskDiv.append(propertyParagraph);
-        };
-        
-        const taskProperties = [task.title, task.description, task.due, task.priority];
-        const taskKeys = Object.keys(task);
-
-        for (let i = 0; i < taskProperties.length; i++) {
-            const property = taskProperties[i];
-            const key = taskKeys[i].toUpperCase();
-            displayTaskProperty(property, key);
-        };
-
-        const addEditButton = (() => {
-            const editBtn = document.createElement("button");
-            editBtn.type = "button";
-            editBtn.className = "edit-btn";
-            editBtn.textContent = "Edit";
-            taskDiv.append(editBtn);
-        })();
-
-        //const addDeleteButton = () => {
-
-        //};
-        
-        projectTasksDiv.append(taskDiv);
-    };
-
-    project.tasks.forEach(displayTask);
+    for (let i = 0; i < project.tasks.length; i++) {
+        const task = createTask(project.tasks[i]);
+        projectTasksDiv.append(task);
+    }
 };
 
 export const displayProjectsList = (allProjects) => {
