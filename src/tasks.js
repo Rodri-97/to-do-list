@@ -22,10 +22,6 @@ export const getAllTasks = (projectName) => {
     return;
 };
 
-export const setAllTasks = () => {
-    setAllProjects();
-};
-
 export const findTaskObject = (taskTitle) => {
     const allProjects = getAllProjects();
     for (let i = 0; i < allProjects.length; i++) {
