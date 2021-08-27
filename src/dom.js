@@ -40,7 +40,7 @@ export const displayProject = (project) => {
     for (let i = 0; i < project.tasks.length; i++) {
         const task = createTask(project.tasks[i]);
         projectTasksDiv.append(task);
-    }
+    };
 };
 
 export const displayProjectsList = (allProjects) => {
@@ -105,53 +105,55 @@ const getPropertiesValues = (taskProperties) => {
     return newArr;
 };
 
+const displayInputField = (task, propertyName, propertyValue) => {
+    const propertyText = document.createElement("h2");
+    propertyText.textContent = propertyName;
+    propertyText.className = "edit-property-text";
+    task.append(propertyText);
+
+    if (propertyName === "PRIORITY") {
+        const select = document.createElement("select");
+        const options = ["high", "medium", "low"];
+        for (let i = 0; i < options.length; i++) {
+            const option = document.createElement("option");
+            option.innerHTML = options[i];
+            if (options[i] === propertyValue.trim()) option.selected = true;
+            select.append(option);
+        };
+        select.className = "edit-input-field edit-priority";
+        task.append(select);
+    }
+    else {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.defaultValue = propertyValue.trim();
+        input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
+        task.append(input);
+    };
+};
+
+const createDoneButton = (task) => {
+    const doneButton = document.createElement("button");
+    doneButton.type = "button";
+    doneButton.className = "done-btn";
+    doneButton.textContent = "Done!";
+    task.innerHTML += "<br>";
+    task.append(doneButton);
+};
+
 export const displayEditForm = (task) => {
     const taskProperties = task.getElementsByClassName("task-property");
     const propertiesNames = getPropertiesNames(taskProperties);
     const propertiesValues = getPropertiesValues(taskProperties);
     task.innerHTML = "";
 
-    const displayInputField = (propertyName, propertyValue) => {
-        const propertyText = document.createElement("h2");
-        propertyText.textContent = propertyName;
-        propertyText.className = "edit-property-text";
-        task.append(propertyText);
-
-        if (propertyName === "PRIORITY") {
-            const select = document.createElement("select");
-            const options = ["high", "medium", "low"];
-            for (let i = 0; i < options.length; i++) {
-                const option = document.createElement("option");
-                option.innerHTML = options[i];
-                if (options[i] === propertyValue.trim()) option.selected = true;
-                select.append(option);
-            };
-            select.className = "edit-input-field edit-priority";
-            task.append(select);
-        }
-        else {
-            const input = document.createElement("input");
-            input.type = "text";
-            input.defaultValue = propertyValue.trim();
-            input.className = `edit-input-field edit-${propertyName.toLowerCase()}`;
-            task.append(input);
-        };
-    };
-
     for (let i = 0; i < propertiesNames.length; i++) {
         const propertyName = propertiesNames[i];
         const propertyValue = propertiesValues[i];
-        displayInputField(propertyName, propertyValue);
+        displayInputField(task, propertyName, propertyValue);
     };
 
-    const createDoneButton = (() => {
-        const doneButton = document.createElement("button");
-        doneButton.type = "button";
-        doneButton.className = "done-btn";
-        doneButton.textContent = "Done!";
-        task.innerHTML += "<br>";
-        task.append(doneButton);
-    })();
+    createDoneButton(task);
 };
 
 export const getEditData = (task) => {
