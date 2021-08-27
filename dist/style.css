@@ -50,20 +50,20 @@ body {
 }
 
 #new-project-btn {
-    background-color: var(--light-blue);
-    color: black;
+    background-color: var(--dark-blue);
+    color: white;
     padding: 20px;
     border-radius: 20px;
     font-size: 20px;
     font-family: Impact;
     font-weight: bold;
     margin-top: 30px;
-    border: none;
+    border: 3px solid white;
 }
 
 #new-project-btn:hover {
     background-color: white;
-    color: black;
+    color: var(--dark-blue);
 }
 
 #add-task-btn {
@@ -73,11 +73,11 @@ body {
     margin-right: auto;
     border-radius: 20px;
     padding: 5px;
+    font-size: 25px;
 }
 
 #add-task-btn:hover {
-    color: green;
-    background-color: white;
+    font-size: 35px;
 }
 
 #add-task-form {
@@ -102,20 +102,21 @@ body {
     background-color: green;
     color: white;
     font-size: 20px;
-    border: 2px solid white;
+    border: none;
 }
 
 #submit-btn:hover {
-    background-color: white;
-    color: green;
+    font-size: 30px;
 }
 
 .task-div {
-    border: 3px solid white;
-    background-color: black;
+    border: none;
+    border-radius: 20px;
+    background-color: purple;
     font-size: 20px;
-    width: 600px;
+    width: 500px;
     margin: 0 auto 20px auto;
+    padding: 10px;
 }
 
 .edit-btn, .done-btn {
@@ -127,8 +128,7 @@ body {
 }
 
 .edit-btn:hover, .done-btn:hover {
-    color: orange;
-    background: white;
+    font-size: 25px;
 }
 
 .delete-cross {
