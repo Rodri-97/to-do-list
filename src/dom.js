@@ -70,9 +70,17 @@ export const getFormData = () => {
     return [title, description, due, priority];
 };
 
+const clearFormInput = () => {
+    const inputFields = document.getElementsByClassName("add-task-input");
+    for (let i = 0; i < inputFields.length; i++) inputFields[i].value = "";
+    const priority = document.getElementById("priority");
+    priority.selectedIndex = "0";
+};
+
 export const closeForm = () => {
     const addTaskForm = document.getElementById("add-task-form");
     addTaskForm.style.display = "none";
+    clearFormInput();
 };
 
 export const redifySelectedItem = (selectedItem, allItems) => {

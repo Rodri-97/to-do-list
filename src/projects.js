@@ -5,8 +5,8 @@ class Project {
     };
 };
 
-export const createProject = (name, tasks) => {
-    const newProject = new Project(name, tasks);
+export const createProject = (name) => {
+    const newProject = new Project(name);
     return newProject;
 }
 
