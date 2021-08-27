@@ -117,7 +117,7 @@ const displayInputField = (task, propertyName, propertyValue) => {
         for (let i = 0; i < options.length; i++) {
             const option = document.createElement("option");
             option.innerHTML = options[i];
-            if (options[i] === propertyValue.trim()) option.selected = true;
+            if (options[i] === propertyValue.trim()) option.setAttribute("selected", "selected");
             select.append(option);
         };
         select.className = "edit-input-field edit-priority";
