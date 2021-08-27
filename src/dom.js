@@ -13,6 +13,13 @@ const displayEditButton = () => {
     return editBtn;
 };
 
+const displayDeleteCross = () => {
+    const deleteCross = document.createElement("p");
+    deleteCross.className = "delete-cross";
+    deleteCross.textContent = "X";
+    return deleteCross;
+};
+
 const displayTask = (task) => {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task-div";
@@ -27,7 +34,9 @@ const displayTask = (task) => {
         taskDiv.append(propertyParagraph);
     };
 
+    const deleteCross = displayDeleteCross();
     const editButton = displayEditButton();
+    taskDiv.prepend(deleteCross);
     taskDiv.append(editButton);
     return taskDiv;
 };
