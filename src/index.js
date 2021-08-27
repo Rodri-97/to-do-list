@@ -20,6 +20,7 @@ const doneEvent = (task, taskTitle) => {
         const currentProjectName = document.getElementById("project-name").textContent;
         const currentProject = findProject(currentProjectName);
         DOM.displayProject(currentProject);
+        editEvent();
     });
 };
 
