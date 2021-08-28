@@ -23,6 +23,18 @@ const displayDeleteCross = () => {
 const displayTask = (task) => {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task-div";
+
+    switch(task.priority) {
+        case "high":
+            taskDiv.style.backgroundColor = "rgb(200, 50, 50)";
+            break;
+        case "medium":
+            taskDiv.style.backgroundColor = "gray";
+            break;
+        case "low":
+            taskDiv.style.backgroundColor = "rgb(100, 200, 100)";
+            break;
+    };
     
     const taskProperties = [task.title, task.description, task.due, task.priority];
     const taskKeys = Object.keys(task);
