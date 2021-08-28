@@ -60,6 +60,14 @@ const sortTasksByPriority = (tasks) => {
 };
 
 export const displayProject = (project) => {
+    const deleteBtn = document.getElementById("delete-btn");
+    if (project.name === "Default Project") {
+        deleteBtn.style.display = "none";
+    }
+    else {
+        deleteBtn.style.display = "block";
+    };
+
     const projectName = document.getElementById("project-name");
     const projectTasksDiv = document.getElementById("project-tasks");
     projectName.textContent = project.name;

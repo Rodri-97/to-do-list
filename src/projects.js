@@ -43,3 +43,9 @@ export const findProject = (projectName) => {
     };
     return false;
 };
+
+export const deleteProject = (projectName) => {
+    getAllProjects();
+    allProjects = allProjects.filter(project => project.name !== projectName);
+    setAllProjects();
+};

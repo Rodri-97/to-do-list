@@ -1,8 +1,0 @@
---> create and display default project
---> add new project button click : prompt user to enter new project name
---> store new project in allProjects array
---> allow user to toggle between projects
-
---> allow user to add tasks to projects
---> display tasks of selected project on right side
-

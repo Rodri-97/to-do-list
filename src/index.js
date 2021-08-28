@@ -1,5 +1,5 @@
 import * as DOM from "./dom.js";
-import { createProject, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
+import { createProject, setAllProjects, getAllProjects, addProject, findProject, deleteProject } from "./projects.js";
 import { createTask, getAllTasks, findTaskObject, editTaskObject, deleteTaskObject } from "./tasks.js";
 
 const editDateEvent = () => {
@@ -155,6 +155,18 @@ const submitEvent = (() => {
         }
         else {
             alert("That task is either empty or already exists!");
+        };
+    });
+})();
+
+const deleteProjectEvent = (() => {
+    const deleteBtn = document.getElementById("delete-btn");
+    deleteBtn.addEventListener("click", function() {
+        const userInput = prompt("Are you sure you want to delete this project? (Yes/No)");
+        if (userInput !== null && userInput.toLowerCase() === "yes") {
+            const currentProjectName = document.getElementById("project-name").textContent;
+            deleteProject(currentProjectName);
+            location.reload();
         };
     });
 })();
