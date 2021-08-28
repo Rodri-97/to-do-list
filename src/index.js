@@ -39,6 +39,16 @@ const editEvent = () => {
     };
 };
 
+const deleteEvent = () => {
+    const deleteCrosses = document.getElementsByClassName("delete-cross");
+    for (let i = 0; i < deleteCrosses.length; i++) {
+        const deleteCross = deleteCrosses[i];
+        deleteCross.addEventListener("click", function() {
+            console.log("test");
+        });
+    };
+};
+
 const addDisplayItemsEvents = (projectItems) => {
     for (let i = 0; i < projectItems.length; i++) {
         const item = projectItems[i];
