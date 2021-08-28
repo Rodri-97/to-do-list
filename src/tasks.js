@@ -47,3 +47,8 @@ export const editTaskObject = (taskTitle, newData) => {
     taskObject.priority = newPriority;
     setAllProjects();
 };
+
+export const deleteTaskObject = (taskTitle, project) => {
+    project.tasks = project.tasks.filter(task => task.title !== taskTitle);
+    setAllProjects();
+};

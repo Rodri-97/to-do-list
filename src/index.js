@@ -1,6 +1,6 @@
 import * as DOM from "./dom.js";
 import { createProject, setAllProjects, getAllProjects, addProject, findProject } from "./projects.js";
-import { createTask, getAllTasks, findTaskObject, editTaskObject } from "./tasks.js";
+import { createTask, getAllTasks, findTaskObject, editTaskObject, deleteTaskObject } from "./tasks.js";
 
 const editDateEvent = () => {
     const editDates = document.getElementsByClassName("edit-due");
@@ -21,6 +21,7 @@ const doneEvent = (task, taskTitle) => {
         const currentProject = findProject(currentProjectName);
         DOM.displayProject(currentProject);
         editEvent();
+        deleteEvent();
     });
 };
 
@@ -40,11 +41,19 @@ const editEvent = () => {
 };
 
 const deleteEvent = () => {
-    const deleteCrosses = document.getElementsByClassName("delete-cross");
-    for (let i = 0; i < deleteCrosses.length; i++) {
-        const deleteCross = deleteCrosses[i];
-        deleteCross.addEventListener("click", function() {
-            console.log("test");
+    const taskDivs = document.getElementsByClassName("task-div");
+    const currentProjectName = document.getElementById("project-name").textContent;
+
+    for (let i = 0; i < taskDivs.length; i++) {
+        const taskDiv = taskDivs[i];
+        const taskTitle = taskDiv.getElementsByClassName("task-property")[0].textContent.split(":")[1].trim();
+        const deleteCross = taskDiv.getElementsByClassName("delete-cross")[0];
+        deleteCross.addEventListener("click", function () {
+            const currentProject = findProject(currentProjectName);
+            deleteTaskObject(taskTitle, currentProject);
+            DOM.displayProject(currentProject);
+            editEvent();
+            deleteEvent();
         });
     };
 };
@@ -57,6 +66,7 @@ const addDisplayItemsEvents = (projectItems) => {
             const project = findProject(item.textContent);
             DOM.displayProject(project);
             editEvent();
+            deleteEvent();
         });
     };
 };
@@ -85,6 +95,7 @@ const renderDefaultProject = (() => {
     DOM.displayProjectsList(allProjects);
     updateProjectItemsEvents();
     editEvent();
+    deleteEvent();
 })();
 
 const createNewProject = (projectName) => {
@@ -140,6 +151,7 @@ const submitEvent = (() => {
             DOM.closeForm();
             DOM.displayProject(currentProject);
             editEvent();
+            deleteEvent();
         }
         else {
             alert("That task is either empty or already exists!");
